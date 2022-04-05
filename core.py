@@ -1,5 +1,8 @@
+from random import randint, choice
+from typing import List
 import requests
 import logging
+import time
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -21,26 +24,38 @@ def run_query(query=None, variables=None, headers=None):
         raise Exception(f"({request.status_code}): Query Failed: {request.text}")
 
 
-def authenticate():
+def authenticate(credentials: dict):
     qry = """
       mutation AuthenticateUser($username: String!, $password: String!) {
         authenticateUser(password: $password, username: $username) {
-          token
-          tokenType
+            ... on AuthenticatedData {
+                token
+                tokenType
+            }
         }
       }
     """
-    variables = {
-        'username': 'admin',
-        'password': 'admin',
-    }
+    
+    variables = credentials
     auth = run_query(query=qry, variables=variables)
     token = auth["data"]["authenticateUser"]['token']
     return {"Authorization": f"bearer {token}"}
 
 
-def do_work(query: str = None, var_list: list= None):
-    auth_headers = authenticate()
+def do_work(query: str = None, var_list: list= None, usernames: List[str]=None):
+    # time.sleep(randint(1,5))
+    username = choice(usernames)
+    credentials = {
+        'username': username,
+        'password': 'admin' if username == "admin" else "password",
+    }
+    auth_headers = authenticate(credentials)
+
+    fin = []
 
     for variables in var_list:
-        run_query(query=query, variables=variables, headers=auth_headers)
+        # time.sleep(randint(1, 10))
+        val = run_query(query=query, variables=variables, headers=auth_headers)
+        fin.append(val)
+        
+    return fin

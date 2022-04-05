@@ -13,9 +13,14 @@ logger = logging.getLogger(__name__)
 engine = Faker()
 
 add_ar_query = """
-mutation AddAnalysisRequest ($clientRequestId: String!, $clientUid: Int!, $patientUid: Int!, $samples: [ARSampleInputType!]!) {
-  createAnalysisRequest(clientRequestId: $clientRequestId, clientUid: $clientUid, patientUid: $patientUid, samples: $samples) {
-      uid
+mutation AddAnalysisRequest ($payload: AnalysisRequestInputType!) {
+  createAnalysisRequest(payload: $payload) {
+      ... on AnalysisRequestWithSamples {
+        uid
+      }
+      ... on OperationError {
+          error
+      }
   }
 }
 """
@@ -52,13 +57,16 @@ def gen_sample():
 ar_variables = [  # list of lists - each list will be run in its own thread -> simulating multi user regs
     [
         {
-            "clientRequestId": engine.ssn(),
-            "clientUid": random.randint(1, 9),
-            "patientUid": random.randint(5, 1650),
-            "priority":random.choice([0, 1]),
-            "samples": [gen_sample() for _x in range(random.randint(1, 5))],
-        } for i in range(100)
-    ] for x in range(10)
+            "payload": {
+                "clientRequestId": engine.ssn(),
+                "clientUid": random.randint(1, 1500),
+                "clientContactUid": 1,
+                "patientUid": random.randint(1, 210196),
+                "priority":random.choice([0, 2]),
+                "samples": [gen_sample() for _x in range(random.randint(1, 2))],
+            }
+        } for i in range(1000)
+    ] for x in range(250)
 ]
 
 # def do_work1(var_list):
@@ -69,7 +77,7 @@ ar_variables = [  # list of lists - each list will be run in its own thread -> s
 #
 
 def start_ar_reg():
-    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         future_to_url = (executor.submit(do_work, add_ar_query, variables) for variables in ar_variables)
 
         for future in concurrent.futures.as_completed(future_to_url):

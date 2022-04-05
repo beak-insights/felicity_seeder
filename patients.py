@@ -13,35 +13,14 @@ logger = logging.getLogger(__name__)
 engine = Faker()
 
 add_patient_query = """
-  mutation AddPatient(
-    $clientPatientId: String!,
-    $firstName: String!,
-    $middleName: String,
-    $lastName: String!,
-    $age: Int!,
-    $gender: Int!,
-    $dateOfBirth: DateTime,
-    $ageDobEstimated: Boolean,
-    $clientUid: Int!,
-    $phoneMobile: String!,
-    $phoneHome: String!,
-    $consentSms: Boolean,       
-  ){
-  createPatient(
-      clientPatientId: $clientPatientId,
-      firstName: $firstName,
-      middleName: $middleName,
-      lastName: $lastName,
-      age: $age,
-      gender: $gender,
-      dateOfBirth: $dateOfBirth,
-      ageDobEstimated: $ageDobEstimated,
-      clientUid: $clientUid,
-      phoneMobile: $phoneMobile,
-      phoneHome: $phoneHome,
-      consentSms: $consentSms   
-  ) {
-    uid
+  mutation AddPatient($payload: PatientInputType!){
+  createPatient(payload: $payload) {
+    ... on PatientType {
+        uid
+    }
+    ... on OperationError {
+        error
+    }
   }
 }
 """
@@ -49,20 +28,22 @@ add_patient_query = """
 patient_variables = [  # list of lists - each list will be run in its own thread -> simulating multi user regs
     [
         {
-            'clientPatientId': engine.ssn(),
-            'firstName': engine.first_name(),
-            'middleName': engine.first_name(),
-            'lastName': engine.last_name(),
-            'age': random.randint(1, 90),
-            'gender': random.choice([1, 2, 3]),
-            'dateOfBirth': str(engine.date_time()),
-            'ageDobEstimated': engine.boolean(),
-            'clientUid': 1,
-            'phoneMobile': engine.phone_number(),
-            'phoneHome': engine.phone_number(),
-            'consentSms': engine.boolean(),
-        } for i in range(100)
-    ] for x in range(10)
+            'payload': {
+                'clientPatientId': engine.ssn(),
+                'firstName': engine.first_name(),
+                'middleName': engine.first_name(),
+                'lastName': engine.last_name(),
+                'age': random.randint(1, 90),
+                'gender': random.choice([1, 2, 3]),
+                'dateOfBirth': str(engine.date_time()),
+                'ageDobEstimated': engine.boolean(),
+                'clientUid': 1,
+                'phoneMobile': engine.phone_number(),
+                'phoneHome': engine.phone_number(),
+                'consentSms': engine.boolean(),
+            }
+        } for i in range(10)
+    ] for x in range(100)
 ]
 
 # def do_work1(var_list):
@@ -73,7 +54,7 @@ patient_variables = [  # list of lists - each list will be run in its own thread
 #
 
 def start_patient_reg():
-    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         future_to_url = (executor.submit(do_work, add_patient_query, variables) for variables in patient_variables)
 
         for future in concurrent.futures.as_completed(future_to_url):
