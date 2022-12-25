@@ -14,14 +14,16 @@ def run_query(query=None, variables=None, headers=None):
 
     request = requests.post(
         'http://127.0.0.1:8000/felicity-gql',
-        json={'query': query, 'variables': variables} if query else {'query': self.query, 'variables': variables},
+        json={'query': query, 'variables': variables} if query else {
+            'query': self.query, 'variables': variables},
         headers=headers,
     )
     if request.status_code == 200:
         logger.info(request.json())
         return request.json()
     else:
-        raise Exception(f"({request.status_code}): Query Failed: {request.text}")
+        raise Exception(
+            f"({request.status_code}): Query Failed: {request.text}")
 
 
 def authenticate(credentials: dict):
@@ -35,19 +37,19 @@ def authenticate(credentials: dict):
         }
       }
     """
-    
+
     variables = credentials
     auth = run_query(query=qry, variables=variables)
     token = auth["data"]["authenticateUser"]['token']
     return {"Authorization": f"bearer {token}"}
 
 
-def do_work(query: str = None, var_list: list= None, usernames: List[str]=None):
+def do_work(query: str = None, var_list: list = None, usernames: List[str] = None):
     # time.sleep(randint(1,5))
     username = choice(usernames)
     credentials = {
         'username': username,
-        'password': 'admin' if username == "admin" else "password",
+        'password': "!Felicity#100",
     }
     auth_headers = authenticate(credentials)
 
@@ -57,5 +59,5 @@ def do_work(query: str = None, var_list: list= None, usernames: List[str]=None):
         # time.sleep(randint(1, 10))
         val = run_query(query=query, variables=variables, headers=auth_headers)
         fin.append(val)
-        
+
     return fin

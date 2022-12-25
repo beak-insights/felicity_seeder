@@ -25,12 +25,13 @@ mutation AddAnalysisRequest ($payload: AnalysisRequestInputType!) {
 }
 """
 
+
 def gen_sample():
     randoms = [
         {
-            "sampletypes": [2,3],
-            "analyses": [None, 1,2,3],
-            "profiles": [None, 1,2],
+            "sampletypes": [2, 3],
+            "analyses": [None, 1, 2, 3],
+            "profiles": [None, 1, 2, 3, 4],
         },
         {
             "sampletypes": [4],
@@ -54,6 +55,7 @@ def gen_sample():
         "analyses": [anal] if anal else []
     }
 
+
 ar_variables = [  # list of lists - each list will be run in its own thread -> simulating multi user regs
     [
         {
@@ -62,11 +64,11 @@ ar_variables = [  # list of lists - each list will be run in its own thread -> s
                 "clientUid": random.randint(1, 1500),
                 "clientContactUid": 1,
                 "patientUid": random.randint(1, 210196),
-                "priority":random.choice([0, 2]),
-                "samples": [gen_sample() for _x in range(random.randint(1, 2))],
+                "priority": random.choice([0, 2]),
+                "samples": [gen_sample() for _x in range(random.randint(1, 3))],
             }
-        } for i in range(1000)
-    ] for x in range(250)
+        } for i in range(100)
+    ] for x in range(25000)
 ]
 
 # def do_work1(var_list):
@@ -76,9 +78,11 @@ ar_variables = [  # list of lists - each list will be run in its own thread -> s
 #         run_query(query=add_patient_query, variables=variables, headers=auth_headers)
 #
 
+
 def start_ar_reg():
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        future_to_url = (executor.submit(do_work, add_ar_query, variables) for variables in ar_variables)
+        future_to_url = (executor.submit(do_work, add_ar_query, variables)
+                         for variables in ar_variables)
 
         for future in concurrent.futures.as_completed(future_to_url):
             try:

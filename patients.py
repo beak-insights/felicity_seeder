@@ -34,7 +34,7 @@ patient_variables = [  # list of lists - each list will be run in its own thread
                 'middleName': engine.first_name(),
                 'lastName': engine.last_name(),
                 'age': random.randint(1, 90),
-                'gender': random.choice([1, 2, 3]),
+                'gender': random.choice(["Male", "Female"]),
                 'dateOfBirth': str(engine.date_time()),
                 'ageDobEstimated': engine.boolean(),
                 'clientUid': 1,
@@ -42,8 +42,8 @@ patient_variables = [  # list of lists - each list will be run in its own thread
                 'phoneHome': engine.phone_number(),
                 'consentSms': engine.boolean(),
             }
-        } for i in range(10)
-    ] for x in range(100)
+        } for i in range(100)
+    ] for x in range(10000)
 ]
 
 # def do_work1(var_list):
@@ -53,9 +53,11 @@ patient_variables = [  # list of lists - each list will be run in its own thread
 #         run_query(query=add_patient_query, variables=variables, headers=auth_headers)
 #
 
+
 def start_patient_reg():
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        future_to_url = (executor.submit(do_work, add_patient_query, variables) for variables in patient_variables)
+        future_to_url = (executor.submit(do_work, add_patient_query, variables)
+                         for variables in patient_variables)
 
         for future in concurrent.futures.as_completed(future_to_url):
             try:

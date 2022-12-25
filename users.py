@@ -80,29 +80,32 @@ fetch_users = """
 """
 
 _unique = []
+
+
 def user_faker():
-    
+
     while True:
         fist_name = engine.first_name()
         last_name = engine.last_name()
         if fist_name not in _unique:
             _unique.append(fist_name)
             break
-        
+
     return {
         'firstName': fist_name,
         'lastName': last_name,
         'email': f"{fist_name}{last_name}@felcity.com".lower(),
         'openReg': False,
-    } 
-    
+    }
+
 
 fake_users = [user_faker() for i in range(10)]
 
 
 def start_user_reg(usernames: List[str]):
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        future_to_url = (executor.submit(do_work, add_user_mutation, fake_users, usernames) for i in [1])
+        future_to_url = (executor.submit(
+            do_work, add_user_mutation, fake_users, usernames) for i in [1])
 
         for future in concurrent.futures.as_completed(future_to_url):
             try:
@@ -112,13 +115,14 @@ def start_user_reg(usernames: List[str]):
                     {
                         'userUid': item["data"]["createUser"]["uid"],
                         'userName': item["data"]["createUser"]["firstName"].lower(),
-                        'password': 'password',
-                        'passwordc': 'password',
+                        'password': '!Felicity#100',
+                        'passwordc': '!Felicity#100',
                     } for item in data
                 ]
-                
+
                 with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-                    future_to_url = (executor.submit(do_work, add_auth_mutation, auth_vars, usernames) for i in [1])
+                    future_to_url = (executor.submit(
+                        do_work, add_auth_mutation, auth_vars, usernames) for i in [1])
                     for future in concurrent.futures.as_completed(future_to_url):
                         try:
                             data = future.result()
@@ -134,6 +138,7 @@ def fetch_user_auths(usernames: List[str]):
     users = do_work(fetch_users, [{}], usernames)
     for user in users[0]["data"]["userAll"]["items"]:
         print(user)
-    user_names = [user["auth"]["userName"] for user in users[0]["data"]["userAll"]["items"] if user["auth"]]
+    user_names = [user["auth"]["userName"]
+                  for user in users[0]["data"]["userAll"]["items"] if user["auth"]]
     # logger.info(f'user_names: {user_names}')
     return user_names
