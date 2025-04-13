@@ -1,0 +1,582 @@
+[
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Faker",
+        "importPath": "faker",
+        "description": "faker",
+        "isExtraImport": true,
+        "detail": "faker",
+        "documentation": {}
+    },
+    {
+        "label": "Faker",
+        "importPath": "faker",
+        "description": "faker",
+        "isExtraImport": true,
+        "detail": "faker",
+        "documentation": {}
+    },
+    {
+        "label": "Faker",
+        "importPath": "faker",
+        "description": "faker",
+        "isExtraImport": true,
+        "detail": "faker",
+        "documentation": {}
+    },
+    {
+        "label": "Faker",
+        "importPath": "faker",
+        "description": "faker",
+        "isExtraImport": true,
+        "detail": "faker",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "choice",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_profiles_analyses",
+        "importPath": "metadata",
+        "description": "metadata",
+        "isExtraImport": true,
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_sample_types",
+        "importPath": "metadata",
+        "description": "metadata",
+        "isExtraImport": true,
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_clients",
+        "importPath": "metadata",
+        "description": "metadata",
+        "isExtraImport": true,
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "concurrent.futures",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "add_patient_query",
+        "importPath": "patients",
+        "description": "patients",
+        "isExtraImport": true,
+        "detail": "patients",
+        "documentation": {}
+    },
+    {
+        "label": "get_patient",
+        "importPath": "patients",
+        "description": "patients",
+        "isExtraImport": true,
+        "detail": "patients",
+        "documentation": {}
+    },
+    {
+        "label": "add_ar_query",
+        "importPath": "analysis",
+        "description": "analysis",
+        "isExtraImport": true,
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "gen_ar_request",
+        "importPath": "analysis",
+        "description": "analysis",
+        "isExtraImport": true,
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "run_query",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "run_query",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "do_work",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "run_query",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "random_date_collected",
+        "kind": 2,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "def random_date_collected(start, end):\n    start_ts = start.timestamp()\n    end_ts = end.timestamp()\n    random_ts = random.uniform(start_ts, end_ts)\n    random_datetime = datetime.fromtimestamp(random_ts)\n    return random_datetime.isoformat()\ndef gen_ar_request(username: str):\n    sample_types = fetch_sample_types(username)\n    profiles, analyses = fetch_profiles_analyses(username)\n    return {",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "gen_ar_request",
+        "kind": 2,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "def gen_ar_request(username: str):\n    sample_types = fetch_sample_types(username)\n    profiles, analyses = fetch_profiles_analyses(username)\n    return {\n        \"sampleType\": random.choice(sample_types),\n        \"profiles\": [random.choice(profiles) for _ in range(2)],\n        \"analyses\": [random.choice(analyses) for _ in range(5)],\n        \"dateCollected\": random_date_collected(one_week_ago, two_hours_ago)\n    }\nif __name__ == \"__main__\":",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nengine = Faker()\nadd_ar_query = \"\"\"\n    mutation AddAnalysisRequest ($payload: AnalysisRequestInputType!) {\n        createAnalysisRequest(payload: $payload) {\n            ... on AnalysisRequestWithSamples {\n                uid\n            }\n            ... on OperationError {\n                error",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "engine = Faker()\nadd_ar_query = \"\"\"\n    mutation AddAnalysisRequest ($payload: AnalysisRequestInputType!) {\n        createAnalysisRequest(payload: $payload) {\n            ... on AnalysisRequestWithSamples {\n                uid\n            }\n            ... on OperationError {\n                error\n            }",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "add_ar_query",
+        "kind": 5,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "add_ar_query = \"\"\"\n    mutation AddAnalysisRequest ($payload: AnalysisRequestInputType!) {\n        createAnalysisRequest(payload: $payload) {\n            ... on AnalysisRequestWithSamples {\n                uid\n            }\n            ... on OperationError {\n                error\n            }\n        }",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "now",
+        "kind": 5,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "now = datetime.now()\ntwo_hours_ago = now - timedelta(hours=2)\none_week_ago = now - timedelta(weeks=1)\n# Generate a random datetime between one_week_ago and two_hours_ago\ndef random_date_collected(start, end):\n    start_ts = start.timestamp()\n    end_ts = end.timestamp()\n    random_ts = random.uniform(start_ts, end_ts)\n    random_datetime = datetime.fromtimestamp(random_ts)\n    return random_datetime.isoformat()",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "two_hours_ago",
+        "kind": 5,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "two_hours_ago = now - timedelta(hours=2)\none_week_ago = now - timedelta(weeks=1)\n# Generate a random datetime between one_week_ago and two_hours_ago\ndef random_date_collected(start, end):\n    start_ts = start.timestamp()\n    end_ts = end.timestamp()\n    random_ts = random.uniform(start_ts, end_ts)\n    random_datetime = datetime.fromtimestamp(random_ts)\n    return random_datetime.isoformat()\ndef gen_ar_request(username: str):",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "one_week_ago",
+        "kind": 5,
+        "importPath": "analysis",
+        "description": "analysis",
+        "peekOfCode": "one_week_ago = now - timedelta(weeks=1)\n# Generate a random datetime between one_week_ago and two_hours_ago\ndef random_date_collected(start, end):\n    start_ts = start.timestamp()\n    end_ts = end.timestamp()\n    random_ts = random.uniform(start_ts, end_ts)\n    random_datetime = datetime.fromtimestamp(random_ts)\n    return random_datetime.isoformat()\ndef gen_ar_request(username: str):\n    sample_types = fetch_sample_types(username)",
+        "detail": "analysis",
+        "documentation": {}
+    },
+    {
+        "label": "do_work",
+        "kind": 2,
+        "importPath": "bundling",
+        "description": "bundling",
+        "peekOfCode": "def do_work(username):\n    credentials = {\n        'username': username,\n        'password': \"!Felicity#100\" if username == 'admin' else \"@Access123!\",\n    }\n    auth_headers = authenticate(credentials)\n    pt_variables, client = get_patient(username)\n    pt_reg = run_query(query=add_patient_query, variables={\"payload\": pt_variables}, headers=auth_headers)\n    logger.info(f\"Created patient: {pt_reg}\")\n    # add analysis request for created patient",
+        "detail": "bundling",
+        "documentation": {}
+    },
+    {
+        "label": "patient_plus_ar_reg",
+        "kind": 2,
+        "importPath": "bundling",
+        "description": "bundling",
+        "peekOfCode": "def patient_plus_ar_reg(usernames: List[str], total):\n    with concurrent.futures.ThreadPoolExecutor(max_workers=len(usernames)) as executor:\n        future_to_url = (executor.submit(do_work, random.choice(usernames)) for _ in range(total))\n        for future in concurrent.futures.as_completed(future_to_url):\n            try:\n                data = future.result()\n                logger.info(\"Done\")\n            except Exception as exc:\n                logger.error(exc)\nif __name__ == '__main__':",
+        "detail": "bundling",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "bundling",
+        "description": "bundling",
+        "peekOfCode": "engine = Faker()\nlogging.basicConfig(level=logging.INFO)\nlogger = logging.getLogger(__name__)\ndef do_work(username):\n    credentials = {\n        'username': username,\n        'password': \"!Felicity#100\" if username == 'admin' else \"@Access123!\",\n    }\n    auth_headers = authenticate(credentials)\n    pt_variables, client = get_patient(username)",
+        "detail": "bundling",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "bundling",
+        "description": "bundling",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef do_work(username):\n    credentials = {\n        'username': username,\n        'password': \"!Felicity#100\" if username == 'admin' else \"@Access123!\",\n    }\n    auth_headers = authenticate(credentials)\n    pt_variables, client = get_patient(username)\n    pt_reg = run_query(query=add_patient_query, variables={\"payload\": pt_variables}, headers=auth_headers)\n    logger.info(f\"Created patient: {pt_reg}\")",
+        "detail": "bundling",
+        "documentation": {}
+    },
+    {
+        "label": "run_query",
+        "kind": 2,
+        "importPath": "core",
+        "description": "core",
+        "peekOfCode": "def run_query(query=None, variables=None, headers=None):\n    if not query:\n        raise Exception(\"Query must be provided\")\n    request = requests.post(\n        'http://0.0.0.0/felicity-gql',\n        json={'query': query, 'variables': variables} if query else {\n            'query': self.query, 'variables': variables},\n        headers=headers,\n    )\n    if request.status_code == 200:",
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "kind": 2,
+        "importPath": "core",
+        "description": "core",
+        "peekOfCode": "def authenticate(credentials: dict):\n    qry = \"\"\"\n      mutation AuthenticateUser($username: String!, $password: String!) {\n        authenticateUser(password: $password, username: $username) {\n            ... on AuthenticatedData {\n                token\n                tokenType\n            }\n        }\n      }",
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "do_work",
+        "kind": 2,
+        "importPath": "core",
+        "description": "core",
+        "peekOfCode": "def do_work(query: str, var_list: list, usernames: List[str] = None):\n    # time.sleep(randint(1,5))\n    username = choice(usernames)\n    credentials = {\n        'username': username,\n        'password': \"!Felicity#100\" if username == 'admin' else \"@Access123!\",\n    }\n    auth_headers = authenticate(credentials)\n    fin = []\n    for variables in var_list:",
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "core",
+        "description": "core",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef run_query(query=None, variables=None, headers=None):\n    if not query:\n        raise Exception(\"Query must be provided\")\n    request = requests.post(\n        'http://0.0.0.0/felicity-gql',\n        json={'query': query, 'variables': variables} if query else {\n            'query': self.query, 'variables': variables},\n        headers=headers,\n    )",
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_clients",
+        "kind": 2,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "def fetch_clients(username: str):\n    meta = _fetch_metatada(fetch_clients_query, username)\n    return meta[\"clientAll\"][\"items\"] if meta else []\ndef fetch_sample_types(username: str):\n    meta = _fetch_metatada(fetch_sample_types_query, username)\n    return [cl[\"uid\"] for cl in meta[\"sampleTypeAll\"]] if meta else []\ndef fetch_profiles_analyses(username: str):\n    meta = _fetch_metatada(fetch_profiles_analyses_query, username)\n    if not meta:\n        return []",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_sample_types",
+        "kind": 2,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "def fetch_sample_types(username: str):\n    meta = _fetch_metatada(fetch_sample_types_query, username)\n    return [cl[\"uid\"] for cl in meta[\"sampleTypeAll\"]] if meta else []\ndef fetch_profiles_analyses(username: str):\n    meta = _fetch_metatada(fetch_profiles_analyses_query, username)\n    if not meta:\n        return []\n    profiles = [cl[\"uid\"] for cl in meta[\"profileAll\"]]\n    analyses = [cl[\"uid\"] for cl in meta[\"analysisAll\"][\"items\"]]  \n    return profiles, analyses",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_profiles_analyses",
+        "kind": 2,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "def fetch_profiles_analyses(username: str):\n    meta = _fetch_metatada(fetch_profiles_analyses_query, username)\n    if not meta:\n        return []\n    profiles = [cl[\"uid\"] for cl in meta[\"profileAll\"]]\n    analyses = [cl[\"uid\"] for cl in meta[\"analysisAll\"][\"items\"]]  \n    return profiles, analyses\ndef fetch_lab_instruments(username: str):\n    meta = _fetch_metatada(fetch_lab_instruments_query, username)\n    return [cl[\"uid\"] for cl in meta[\"laboratoryInstrumentAll\"][\"items\"]] if meta else []",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_lab_instruments",
+        "kind": 2,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "def fetch_lab_instruments(username: str):\n    meta = _fetch_metatada(fetch_lab_instruments_query, username)\n    return [cl[\"uid\"] for cl in meta[\"laboratoryInstrumentAll\"][\"items\"]] if meta else []\ndef fetch_methods(username: str):\n    meta = _fetch_metatada(fetch_methods_query, username)\n    return [cl[\"uid\"] for cl in meta[\"methodAll\"][\"items\"]] if meta else []\nif __name__ == \"__main__\":\n    fetch_clients(\"admin\")\n    fetch_sample_types(\"admin\")\n    fetch_profiles_analyses(\"admin\")",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_methods",
+        "kind": 2,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "def fetch_methods(username: str):\n    meta = _fetch_metatada(fetch_methods_query, username)\n    return [cl[\"uid\"] for cl in meta[\"methodAll\"][\"items\"]] if meta else []\nif __name__ == \"__main__\":\n    fetch_clients(\"admin\")\n    fetch_sample_types(\"admin\")\n    fetch_profiles_analyses(\"admin\")\n    fetch_lab_instruments(\"admin\")\n    fetch_methods(\"admin\")",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nfetch_clients_query = \"\"\" \n    query { clientAll { items { uid name contacts { uid } } } }\n\"\"\"\nfetch_sample_types_query = \"\"\"\n    query { sampleTypeAll { uid name }}\n\"\"\"\nfetch_profiles_analyses_query = \"\"\"\n    query { profileAll {  uid name  } analysisAll { items { uid name} }}\n\"\"\"",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_clients_query",
+        "kind": 5,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "fetch_clients_query = \"\"\" \n    query { clientAll { items { uid name contacts { uid } } } }\n\"\"\"\nfetch_sample_types_query = \"\"\"\n    query { sampleTypeAll { uid name }}\n\"\"\"\nfetch_profiles_analyses_query = \"\"\"\n    query { profileAll {  uid name  } analysisAll { items { uid name} }}\n\"\"\"\nfetch_lab_instruments_query = \"\"\"",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_sample_types_query",
+        "kind": 5,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "fetch_sample_types_query = \"\"\"\n    query { sampleTypeAll { uid name }}\n\"\"\"\nfetch_profiles_analyses_query = \"\"\"\n    query { profileAll {  uid name  } analysisAll { items { uid name} }}\n\"\"\"\nfetch_lab_instruments_query = \"\"\"\n    query { laboratoryInstrumentAll { items { uid labName instrument { uid name }} }}\n\"\"\"\nfetch_methods_query = \"\"\"",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_profiles_analyses_query",
+        "kind": 5,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "fetch_profiles_analyses_query = \"\"\"\n    query { profileAll {  uid name  } analysisAll { items { uid name} }}\n\"\"\"\nfetch_lab_instruments_query = \"\"\"\n    query { laboratoryInstrumentAll { items { uid labName instrument { uid name }} }}\n\"\"\"\nfetch_methods_query = \"\"\"\n    query { methodAll { items { uid name} }}\n\"\"\"\ndef _fetch_metatada(query:str, username: str, variabes: dict ={}):",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_lab_instruments_query",
+        "kind": 5,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "fetch_lab_instruments_query = \"\"\"\n    query { laboratoryInstrumentAll { items { uid labName instrument { uid name }} }}\n\"\"\"\nfetch_methods_query = \"\"\"\n    query { methodAll { items { uid name} }}\n\"\"\"\ndef _fetch_metatada(query:str, username: str, variabes: dict ={}):\n    \"\"\"Fetch all fetch_clients from the system\"\"\"\n    try:\n        headers = authenticate({",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_methods_query",
+        "kind": 5,
+        "importPath": "metadata",
+        "description": "metadata",
+        "peekOfCode": "fetch_methods_query = \"\"\"\n    query { methodAll { items { uid name} }}\n\"\"\"\ndef _fetch_metatada(query:str, username: str, variabes: dict ={}):\n    \"\"\"Fetch all fetch_clients from the system\"\"\"\n    try:\n        headers = authenticate({\n            \"username\": username, \n            \"password\": \"!Felicity#100\" if username == 'admin' else \"@Access123!\"\n        })",
+        "detail": "metadata",
+        "documentation": {}
+    },
+    {
+        "label": "get_patient",
+        "kind": 2,
+        "importPath": "patients",
+        "description": "patients",
+        "peekOfCode": "def get_patient(username: str):\n    clients = fetch_clients(username)\n    client = random.choice(clients)\n    return {\n        'clientPatientId': engine.ssn(),\n        'firstName': engine.first_name(),\n        'middleName': engine.first_name(),\n        'lastName': engine.last_name(),\n        'age': random.randint(1, 90),\n        'gender': random.choice([\"Male\", \"Female\"]),",
+        "detail": "patients",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "patients",
+        "description": "patients",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nengine = Faker()\nadd_patient_query = \"\"\"\n    mutation AddPatient($payload: PatientInputType!){\n        createPatient(payload: $payload) {\n            ... on PatientType {\n                uid\n            }\n            ... on OperationError {\n                error",
+        "detail": "patients",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "patients",
+        "description": "patients",
+        "peekOfCode": "engine = Faker()\nadd_patient_query = \"\"\"\n    mutation AddPatient($payload: PatientInputType!){\n        createPatient(payload: $payload) {\n            ... on PatientType {\n                uid\n            }\n            ... on OperationError {\n                error\n            }",
+        "detail": "patients",
+        "documentation": {}
+    },
+    {
+        "label": "add_patient_query",
+        "kind": 5,
+        "importPath": "patients",
+        "description": "patients",
+        "peekOfCode": "add_patient_query = \"\"\"\n    mutation AddPatient($payload: PatientInputType!){\n        createPatient(payload: $payload) {\n            ... on PatientType {\n                uid\n            }\n            ... on OperationError {\n                error\n            }\n        }",
+        "detail": "patients",
+        "documentation": {}
+    },
+    {
+        "label": "user_faker",
+        "kind": 2,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "def user_faker():\n    while True:\n        first_name = engine.first_name()\n        last_name = engine.last_name()\n        if first_name not in _unique:\n            _unique.append(first_name)\n            break\n    return {\n        'firstName': first_name,\n        'lastName': last_name,",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_existing_users",
+        "kind": 2,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "def fetch_existing_users():\n    \"\"\"Fetch all existing users from the system\"\"\"\n    try:\n        headers = authenticate({\"username\":\"admin\", \"password\": \"!Felicity#100\"})\n        users_response = run_query(fetch_users_query, {}, headers)\n        if users_response:\n            return [user[\"userName\"] for user in users_response[\"data\"][\"userAll\"][\"items\"]]\n        return []\n    except Exception as exc:\n        logger.error(f\"Error fetching users: {exc}\")",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "create_users",
+        "kind": 2,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "def create_users(num_users_needed):\n    \"\"\"Create the specified number of users\"\"\"\n    fake_users = [user_faker() for _ in range(num_users_needed)]\n    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:\n        future_to_url = executor.submit(do_work, add_user_mutation, fake_users, [\"admin\"])\n        try:\n            data = future_to_url.result()\n            return [item[\"data\"][\"createUser\"][\"userName\"] for item in data]\n        except Exception as exc:\n            logger.error(f\"Error creating users: {exc}\")",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "init_users",
+        "kind": 2,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "def init_users(total=10):\n    \"\"\"Initialize users - if not exists then create\"\"\"\n    existing_users = fetch_existing_users()\n    existing_count = len(existing_users)\n    logger.info(f\"Found {existing_count} existing users\")\n    if existing_count >= total:\n        logger.info(f\"At least {total} users already exist. No need to create more.\")\n        return existing_users\n    # Calculate how many more users we need to create\n    num_users_needed = total - existing_count",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nengine = Faker()\nadd_user_mutation = \"\"\"\n    mutation AddUser($firstName: String!, $lastName: String!, $email: String!, $groupUid: String, $userName: String!, $password: String!, $passwordc: String!) {\n        createUser(firstName: $firstName, lastName: $lastName, email: $email, groupUid: $groupUid, userName: $userName, password: $password, passwordc: $passwordc) {\n            ... on UserType {\n                uid\n                firstName\n                lastName\n                email",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "engine = Faker()\nadd_user_mutation = \"\"\"\n    mutation AddUser($firstName: String!, $lastName: String!, $email: String!, $groupUid: String, $userName: String!, $password: String!, $passwordc: String!) {\n        createUser(firstName: $firstName, lastName: $lastName, email: $email, groupUid: $groupUid, userName: $userName, password: $password, passwordc: $passwordc) {\n            ... on UserType {\n                uid\n                firstName\n                lastName\n                email\n                mobilePhone",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "add_user_mutation",
+        "kind": 5,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "add_user_mutation = \"\"\"\n    mutation AddUser($firstName: String!, $lastName: String!, $email: String!, $groupUid: String, $userName: String!, $password: String!, $passwordc: String!) {\n        createUser(firstName: $firstName, lastName: $lastName, email: $email, groupUid: $groupUid, userName: $userName, password: $password, passwordc: $passwordc) {\n            ... on UserType {\n                uid\n                firstName\n                lastName\n                email\n                mobilePhone\n                userName",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_users_query",
+        "kind": 5,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "fetch_users_query = \"\"\" \n    query { userAll { items { userName } } }\n\"\"\"\n_unique = []\ndef user_faker():\n    while True:\n        first_name = engine.first_name()\n        last_name = engine.last_name()\n        if first_name not in _unique:\n            _unique.append(first_name)",
+        "detail": "users",
+        "documentation": {}
+    },
+    {
+        "label": "_unique",
+        "kind": 5,
+        "importPath": "users",
+        "description": "users",
+        "peekOfCode": "_unique = []\ndef user_faker():\n    while True:\n        first_name = engine.first_name()\n        last_name = engine.last_name()\n        if first_name not in _unique:\n            _unique.append(first_name)\n            break\n    return {\n        'firstName': first_name,",
+        "detail": "users",
+        "documentation": {}
+    }
+]

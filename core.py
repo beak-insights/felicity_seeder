@@ -1,8 +1,7 @@
-from random import randint, choice
+from random import choice
 from typing import List
 import requests
 import logging
-import time
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -13,7 +12,7 @@ def run_query(query=None, variables=None, headers=None):
         raise Exception("Query must be provided")
 
     request = requests.post(
-        'http://127.0.0.1:8000/felicity-gql',
+        'http://0.0.0.0/felicity-gql',
         json={'query': query, 'variables': variables} if query else {
             'query': self.query, 'variables': variables},
         headers=headers,
@@ -44,12 +43,12 @@ def authenticate(credentials: dict):
     return {"Authorization": f"bearer {token}"}
 
 
-def do_work(query: str = None, var_list: list = None, usernames: List[str] = None):
+def do_work(query: str, var_list: list, usernames: List[str] = None):
     # time.sleep(randint(1,5))
     username = choice(usernames)
     credentials = {
         'username': username,
-        'password': "!Felicity#100",
+        'password': "!Felicity#100" if username == 'admin' else "@Access123!",
     }
     auth_headers = authenticate(credentials)
 

@@ -1,11 +1,9 @@
-import concurrent.futures
+from datetime import datetime, timedelta
 from faker import Faker
-import requests
 import random
-import time
-from core import run_query, authenticate, do_work
 
 import logging
+from metadata import fetch_profiles_analyses, fetch_sample_types
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -13,80 +11,41 @@ logger = logging.getLogger(__name__)
 engine = Faker()
 
 add_ar_query = """
-mutation AddAnalysisRequest ($payload: AnalysisRequestInputType!) {
-  createAnalysisRequest(payload: $payload) {
-      ... on AnalysisRequestWithSamples {
-        uid
-      }
-      ... on OperationError {
-          error
-      }
-  }
-}
+    mutation AddAnalysisRequest ($payload: AnalysisRequestInputType!) {
+        createAnalysisRequest(payload: $payload) {
+            ... on AnalysisRequestWithSamples {
+                uid
+            }
+            ... on OperationError {
+                error
+            }
+        }
+    }
 """
 
+# Define the time boundaries
+now = datetime.now()
+two_hours_ago = now - timedelta(hours=2)
+one_week_ago = now - timedelta(weeks=1)
 
-def gen_sample():
-    randoms = [
-        {
-            "sampletypes": [2, 3],
-            "analyses": [None, 1, 2, 3],
-            "profiles": [None, 1, 2, 3, 4],
-        },
-        {
-            "sampletypes": [4],
-            "analyses": [3],
-            "profiles": [None],
-        },
-    ]
+# Generate a random datetime between one_week_ago and two_hours_ago
+def random_date_collected(start, end):
+    start_ts = start.timestamp()
+    end_ts = end.timestamp()
+    random_ts = random.uniform(start_ts, end_ts)
+    random_datetime = datetime.fromtimestamp(random_ts)
+    return random_datetime.isoformat()
 
-    while True:
-        selected = random.choice(randoms)
-        s_typ = random.choice(selected.get("sampletypes"))
-        anal = random.choice(selected.get("analyses"))
-        prof = random.choice(selected.get("profiles"))
 
-        if anal or prof:
-            break
-
+def gen_ar_request(username: str):
+    sample_types = fetch_sample_types(username)
+    profiles, analyses = fetch_profiles_analyses(username)
     return {
-        "sampleType": s_typ,
-        "profiles": [prof] if prof else [],
-        "analyses": [anal] if anal else []
+        "sampleType": random.choice(sample_types),
+        "profiles": [random.choice(profiles) for _ in range(2)],
+        "analyses": [random.choice(analyses) for _ in range(5)],
+        "dateCollected": random_date_collected(one_week_ago, two_hours_ago)
     }
 
-
-ar_variables = [  # list of lists - each list will be run in its own thread -> simulating multi user regs
-    [
-        {
-            "payload": {
-                "clientRequestId": engine.ssn(),
-                "clientUid": random.randint(1, 1500),
-                "clientContactUid": 1,
-                "patientUid": random.randint(1, 210196),
-                "priority": random.choice([0, 2]),
-                "samples": [gen_sample() for _x in range(random.randint(1, 3))],
-            }
-        } for i in range(100)
-    ] for x in range(25000)
-]
-
-# def do_work1(var_list):
-#     auth_headers = authenticate()
-#
-#     for variables in var_list:
-#         run_query(query=add_patient_query, variables=variables, headers=auth_headers)
-#
-
-
-def start_ar_reg():
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        future_to_url = (executor.submit(do_work, add_ar_query, variables)
-                         for variables in ar_variables)
-
-        for future in concurrent.futures.as_completed(future_to_url):
-            try:
-                data = future.result()
-                logger.info("Done")
-            except Exception as exc:
-                logger.error(exc)
+if __name__ == "__main__":
+    gen_ar_request("admin")
