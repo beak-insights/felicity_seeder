@@ -12,7 +12,7 @@ def run_query(query=None, variables=None, headers=None):
         raise Exception("Query must be provided")
 
     request = requests.post(
-        'http://0.0.0.0/felicity-gql',
+        'http://localhost:8000/felicity-gql',
         json={'query': query, 'variables': variables} if query else {
             'query': self.query, 'variables': variables},
         headers=headers,

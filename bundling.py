@@ -49,6 +49,7 @@ def patient_plus_ar_reg(usernames: List[str], total):
                 logger.error(exc)
 
 
+
 if __name__ == '__main__':
     from users import init_users
     usernames = init_users()
